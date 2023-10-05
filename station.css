@@ -1,0 +1,80 @@
+
+
+/* Reset some default styles */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling for the header */
+header {
+    background-color: #8b7f7f;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.user-session {
+    display: flex;
+    align-items: center;
+}
+
+#currentUserEmail {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#logoutButton {
+    background-color: #2f1970;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#logoutButton:hover {
+    background-color: #3669f4;
+}
+
+#resetpasswordButton {
+    background-color: #898692;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#resetpasswordButton:hover {
+    background-color: #3669f4;
+}
+
+
+/* Styling for the main content area */
+main {
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+

@@ -1,63 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<!-- Designined by CodingLab - youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="adminhome.css">
     <title>Admin Dashboard</title>
 </head>
+   
 <body>
-    <div class="head100-form-title" style="background-image: url(images/img.jpg);">
-        <span class="head100-form-title-2">
-            CHARGEHUB
-        </span>
-    <header>
-        <h1>CHARGEHUB</h1>
-        <button id="logoutBtn">Logout</button>
-        <button id="viewBtn">View Stations</button>
-    </header>
-    <div class="admin-container">
-        <h2 class="text-uppercase text-center mb-5">STATION MANAGER</h2>
-        <form id="registrationForm">
-            <table>
-                <tr>
-                    <th>
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" required>
-                        <span id="nameError" class="error"></span>
-                        <br><br>
 
-                        <label for="contact">Contact:</label>
-                        <input type="text" id="contact" required>
-                        <span id="contactError" class="error"></span>
-                        <br><br>
-
-                        <label for="managerid">ManagerID:</label>
-                        <input type="text" id="managerid" required>
-                        <span id="manageridError" class="error"></span>
-                        <br><br>
-
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" required>
-                        <span id="emailError" class="error"></span>
-                        <br><br>
-
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" required>
-                        <span id="passwordError" class="error"></span>
-                        <br><br>
-
-                        <button type="submit" id="registerBtn" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
-                    </th>
-                </tr>
-            </table>
-        </form>
+  <div class="container">
+    <div class="title">CHARGEHUB</div>
+    <div class="content">
+      
+      <form id="registrationForm" action="#">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            <input type="text"  id="name" placeholder="Enter your name" required>
+            <span id="nameError" class="error"></span>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" id="contact" placeholder="Enter your number" required>
+            <span id="contactError" class="error"></span>
+          </div>
+          
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" id="email" placeholder="Enter your email" required>
+            <span id="emailError" class="error"></span>
+          </div>
+          
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="text" id="password" placeholder="Enter your password" required>
+            <span id="passwordError" class="error"></span>
+           
+          </div>
+          
+        </div>
+        
+        <div class="button">
+          <input type="submit"  id="registerBtn" value="Register">
+        </div>
+        <div class="button">
+          <input type="submit" id="logoutBtn" value="logout">
+        </div>
+      </form>
     </div>
-    
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script src="firebase-config.js"></script>
-    <script src="adminhome.js"></script>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="adminhome.js"></script>
+
+
 </body>
 </html>
