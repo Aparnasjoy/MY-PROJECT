@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body>
+    <!-- Menu bar with Logout button -->
+    <nav>
+        <ul>
+            <li><a href="#" id="logoutButton">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Display registered station managers -->
+    <h1>Station Managers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="userList">
+             
+        </tbody>
+    </table>
+
+
+
+    <script>
+       
+        function displayStationManagers() {
+            const managerList = document.getElementById("userList");
+            managerList.innerHTML = ""; // Clear previous data
+
+            // Loop through the mock data and create rows
+            stationManagers.forEach((manager, index) => {
+                const row = document.createElement("tr");
+
+                // Create table cells for name, email, status, and buttons
+                const nameCell = document.createElement("td");
+                nameCell.textContent = manager.name;
+
+                const emailCell = document.createElement("td");
+                emailCell.textContent = manager.email;
+
+                const statusCell = document.createElement("td");
+                statusCell.textContent = manager.status;
+
+                const actionCell = document.createElement("td");
+
+                // Create "Enable" button
+                const enableButton = document.createElement("button");
+                enableButton.textContent = "Enable";
+                enableButton.addEventListener("click", () => {
+                    // Implement logic to enable the manager and update the status
+                    manager.status = "Enabled";
+                    statusCell.textContent = "Enabled";
+                });
+
+                // Create "Disable" button
+                const disableButton = document.createElement("button");
+                disableButton.textContent = "Disable";
+                disableButton.addEventListener("click", () => {
+                    // Implement logic to disable the manager and update the status
+                    manager.status = "Disabled";
+                    statusCell.textContent = "Disabled";
+                });
+
+                // Append buttons to the action cell
+                actionCell.appendChild(enableButton);
+                actionCell.appendChild(disableButton);
+
+                // Append cells to the row
+                row.appendChild(nameCell);
+                row.appendChild(emailCell);
+                row.appendChild(statusCell);
+                row.appendChild(actionCell);
+
+                // Append the row to the manager list
+                managerList.appendChild(row);
+            });
+        }
+
+        // Add event listener to the Logout button
+        
+
+        // Call the function to display station managers
+        displayStationManagers();
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+   <script src="firebase-config.js"></script> 
+  <script src="admin-dashboard.js"></script>
+ 
+ 
+ 

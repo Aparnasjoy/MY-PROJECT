@@ -34,21 +34,20 @@ emailField.addEventListener("input", function () {
 
 
 
+
+
 // Add event listener to the login form
 adminLoginForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    console.log("Form submitted");
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    console.log("Email:", email);
-    console.log("Password:", password);
+  event.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
+  firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     const user = userCredential.user;
 
     // Check if the user is the admin
-    if (user.email === "admin@gmail.com") {
+    if (user.email === "aparnasjoy2024a@mca.ajce.in") {
       console.log('Admin user logged in:', user.email);
       alert(" Logged in successfully.");
       // Redirect to adminhome for the admin
@@ -65,9 +64,3 @@ adminLoginForm.addEventListener("submit", function (event) {
   });
   successMessage.style.display = "block";
 });
-
-// Add an event listener to the "Forgot Password" button
-// Import Firebase Authentication
-
-    
-   

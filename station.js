@@ -16,25 +16,25 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 // Handle the logout button click event
+
+
 const logoutButton = document.getElementById("logoutButton");
-logoutButton.addEventListener("click", function() {
-    firebase.auth().signOut().then(function() {
-        // Sign-out successful, redirect to index.html or your desired page
-        window.location.href = "index.html";
-    }).catch(function(error) {
-        // An error happened, handle as needed
-        console.error("Logout error: ", error);
-    });
+
+// Add a click event listener to the logout button
+logoutButton.addEventListener("click", () => {
+  // Sign out the user from Firebase
+  firebase.auth().signOut().then(() => {
+    // Use window.location to navigate to the index.html page
+    window.location.href = "index.html";
+  }).catch((error) => {
+    console.error("Error signing out: ", error);
+  });
 });
 
-// Add your code to interact with the station form and perform other functionalities as needed
-// ...
-// Add this code at the end of your script
-window.addEventListener("popstate", function (e) {
-    // This prevents navigating back
-    history.pushState(null, document.title, window.location.href);
-    
-    // This prevents navigating forward
-    history.forward();
+// Prevent going back after logout
+window.addEventListener("pageshow", function (event) {
+    // If the page was shown through the back button, redirect to index.html
+    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+      window.location.href = "index.html";
+    }
   });
-  
