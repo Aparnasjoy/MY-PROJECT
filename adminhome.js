@@ -126,12 +126,18 @@ contactField.addEventListener("input", validateContact);
 emailField.addEventListener("input", validateEmail);
 passwordField.addEventListener("input", validatePassword);
 
-     function validateName() {
-  const name = nameField.value.trim();
+function validateName() {
+  const fullName = nameField.value.trim();
   const nameError = document.getElementById("nameError");
 
-  if (!/^[A-Za-z\s]+$/.test(name)) {
-    nameError.textContent = "Name should only contain alphabets and spaces.";
+  if (
+    fullName.length > 25 ||
+    fullName.length === 0 ||
+    fullName.startsWith(" ") ||
+    /  +/.test(fullName)
+  ) {
+    nameError.textContent =
+      "invalid name";
     nameError.style.display = "block";
     return false;
   } else {
@@ -140,6 +146,7 @@ passwordField.addEventListener("input", validatePassword);
     return true;
   }
 }
+
 function validateContact() {
   const contact = contactField.value.trim();
   const contactError = document.getElementById("contactError");
@@ -183,8 +190,10 @@ function validatePassword() {
   const password = passwordField.value.trim();
   const passwordError = document.getElementById("passwordError");
 
-  if (password.length < 6) {
-    passwordError.textContent = "Password must be at least 6 characters.";
+  const passwordPattern = /^(?=.*[!@#$%^&*(),.?":{}|<>]).{6}$/;
+
+  if (!passwordPattern.test(password)) {
+    passwordError.textContent = "Password must be 6 characters long and contain at least one special character.";
     passwordError.style.display = "block";
     return false;
   } else {
@@ -193,6 +202,7 @@ function validatePassword() {
     return true;
   }
 }
+
 
 // Rest of your code...
 function displayError(errorId, errorMessage) {

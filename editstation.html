@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="editstation.css"> <!-- External CSS file for styling -->
+    <title>Edit Station</title>
+</head>
+<body>
+    <header>
+        <h1>ChargeHUB</h1>
+        <h2>Station ID: <span id="stationIdHeader"></span></h2>
+    </header>
+    <main>
+        <form id="editStationForm">
+            <label for="stationName">Station Name:</label>
+            <input type="text" id="stationName" name="stationName">
+            <br>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location">
+            <br>
+            <button type="submit">Save Changes</button>
+        </form>
+        </form>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="editstation.js"></script> <!-- JavaScript for form handling -->
+</body>
+</html>

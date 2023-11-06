@@ -10,21 +10,64 @@
     <header>
         <nav class="navbar">
             <div class="container">
-                <h1 class="logo">Station Management</h1>
+                <h1 class="logo">ChargeHub</h1>
                 <div class="user-session">
-                    <span id="currentUserEmail"> user@example.com</span>
-                  <span>  <button id="logoutButton">Logout</button></span>
-                    
-                   <a href="forgot-password.html" id="resetPasswordButton">Reset Password</a>
+                    <span id="currentUserEmail">user@example.com</span>
+                    <span><button id="logoutButton">Logout</button></span>
+                    <a href="forgot-password.html" id="resetPasswordButton">Reset Password</a>
                 </div>
             </div>
         </nav>
     </header>
     <main>
-        <div class="container">
-            <h2>Welcome to the Station Page</h2>
-            <!-- Your station form and content here -->
-        </div>
+        <form id="stationForm">
+            <h1>STATION</h1>
+
+            <label for="stationId">Station ID:</label>
+        <input type="text" id="stationId" name="stationId" required>
+        <br> 
+            <label for="stationName">Station Name:</label>
+            <input type="text" id="stationName" name="stationName" required>
+            <br>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+            <br>
+
+            <label for="totalTerminals">Total Terminals:</label>
+            <input type="number" id="totalTerminals" name="totalTerminals" required>
+            <br>
+
+            <label for="acTerminals">AC Terminals:</label>
+            <input type="number" id="acTerminals" name="acTerminals" required>
+            <br>
+
+            <label for="dcTerminals">DC Terminals:</label>
+            <input type="number" id="dcTerminals" name="dcTerminals" required>
+            <br>
+
+            <label>Adapter Type:</label>
+            <input type="radio" id="acAdapter" name="adapterType" value="AC"> AC
+            <input type="radio" id="dcAdapter" name="adapterType" value="DC">   DC
+            <input type="radio" id="acDcAdapter" name="adapterType" value="ACDC">  AC & DC
+            <br>
+
+            <div id="acAmountField" style="display: none;">
+                <label for="acAmount">AC Adapter Amount (per unit):</label>
+                <input type="number" id="acAmount" name="acAmount">
+            </div>
+
+            <div id="dcAmountField" style="display: none;">
+                <label for="dcAmount">DC Adapter Amount (per unit):</label>
+                <input type="number" id="dcAmount" name="dcAmount">
+            </div>
+            <br>
+
+            <button type="submit">Submit</button>
+            <br><br>
+            <button id="updateStationButton" onclick="redirectToUpdateStation()">Update Station</button>
+
+        </form>
     </main>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>

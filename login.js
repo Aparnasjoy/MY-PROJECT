@@ -32,10 +32,6 @@ emailField.addEventListener("input", function () {
     }
 });
 
-
-
-
-
 // Add event listener to the login form
 adminLoginForm.addEventListener("submit", function (event) {
   event.preventDefault();

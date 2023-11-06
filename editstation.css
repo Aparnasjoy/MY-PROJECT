@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #f7f1f1;
+    text-align: left;
+    padding: 40px;
+}
+
+header h1 {
+    font-size: 50px;
+}
+
+main {
+    padding: 20px;
+}
+
+.station-details {
+    margin-bottom: 20px;
+}
+
+.station-details h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+form h2 {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="number"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    background-color: #080707;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
+
+
+#editStationForm {
+    background-color: #ebebf1;
+    border: 5px solid #0f0b0b;
+    border-radius: 3px;
+    padding: 55px;
+    max-width: 300px;
+    margin: 10 px;
+    text-align: left;
+}
+
+#editStationForm h2 {
+    font-size: 24px;
+    margin:  10px;
+}
+
+#editStationForm label {
+    display: block;
+    margin: 10 0;
+    font-weight: bold;
+}
+
+#editStationForm input[type="number"],
+#editStationForm select {
+    width: 100%;
+    padding: 10px;
+    margin: 0 0 20px;
+    border: 1px solid #1a1212;
+    border-radius: 3px;
+}
+
+#editStationForm button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#editStationForm button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+.station-details {
+    background-color: #f2f2f2;
+    border: 1px solid #0a0909;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 4000px;
+    margin: 10px ;
+    text-align: left;
+}
+
+.station-details h2 {
+    font-size: 24px;
+    margin: 0 0 20px;
+}
+
+.station-details p {
+    margin: 10px 0;
+}
+
+.station-details span {
+    font-weight: bold;
+}
+
+
+
+

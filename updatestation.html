@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="update station.css">
+    <title>Station Manager Dashboard</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo">ChargeHub</h1>
+                <div class="user-session">
+                    <span id="currentUserEmail">user@example.com</span>
+                    <span><button id="logoutButton">Logout</button></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1>My Stations</h1>
+        <div id="stationsContainer"></div>
+        <button class="edit-button" data-station-id="${station.stationId}">Edit</button>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="updatestation.js"></script>
+</body>
+</html>
