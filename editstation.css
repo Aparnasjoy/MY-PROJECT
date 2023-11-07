@@ -6,128 +6,115 @@ header {
     background-color: #333;
     color: #f7f1f1;
     text-align: left;
-    padding: 40px;
-}
-
-header h1 {
-    font-size: 50px;
-}
-
-main {
     padding: 20px;
 }
 
-.station-details {
+header h1 {
+    font-size: 40px;
+}
+
+
+/* Reset some default styles */
+body, h1, h2, form {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Style the main content area */
+main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 24px;
     margin-bottom: 20px;
-}
-
-.station-details h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-form h2 {
-    font-size: 18px;
-    margin-top: 20px;
+    color: #c2bebe;
 }
 
 label {
     display: block;
-    margin-top: 10px;
-    font-weight: bold;
+    margin: 5px 0;
 }
 
-input[type="number"],
-select {
+input[type="number"] {
     width: 100%;
     padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    margin: 5px 0;
 }
 
-button[type="submit"] {
-    background-color: #080707;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
+input[type="radio"] {
+    margin: 5px;
 }
 
-button[type="submit"]:hover {
-    background-color: #555;
-}
-
-
-#editStationForm {
-    background-color: #ebebf1;
-    border: 5px solid #0f0b0b;
-    border-radius: 3px;
-    padding: 55px;
-    max-width: 300px;
-    margin: 10 px;
-    text-align: left;
-}
-
-#editStationForm h2 {
-    font-size: 24px;
-    margin:  10px;
-}
-
-#editStationForm label {
-    display: block;
-    margin: 10 0;
-    font-weight: bold;
-}
-
-#editStationForm input[type="number"],
-#editStationForm select {
-    width: 100%;
-    padding: 10px;
-    margin: 0 0 20px;
-    border: 1px solid #1a1212;
-    border-radius: 3px;
-}
-
-#editStationForm button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-#editStationForm button[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-
-.station-details {
-    background-color: #f2f2f2;
-    border: 1px solid #0a0909;
-    border-radius: 5px;
-    padding: 20px;
-    max-width: 4000px;
-    margin: 10px ;
-    text-align: left;
-}
-
-.station-details h2 {
-    font-size: 24px;
-    margin: 0 0 20px;
-}
-
-.station-details p {
+#acAmountField, #dcAmountField {
     margin: 10px 0;
 }
 
-.station-details span {
-    font-weight: bold;
+button[type="submit"] {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
 }
 
+button[type="submit"]:hover {
+    background-color: #b30000;
+}
 
+/* Style the terminals container */
+#terminalsContainer {
+    margin-top: 20px;
+}
 
+/* Additional styles as needed */
 
+/* Style the terminals container */
+#terminalsContainer {
+    margin-top: 20px;
+}
+
+#terminalsContainer h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#terminalsContainer table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+
+#terminalsContainer table th,
+#terminalsContainer table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#terminalsContainer table th {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+#terminalsContainer table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Additional styles as needed */

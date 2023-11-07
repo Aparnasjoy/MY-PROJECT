@@ -71,7 +71,7 @@ function loadStations() {
 
                         // Create an edit button
                         const editButton = document.createElement("button");
-                        editButton.innerText = "Edit";
+                        editButton.innerText = "ADD TERMINALS";
                         editButton.addEventListener("click", () => {
                             window.location.href = `editstation.html?stationId=${station.stationId}`;
                             // Handle edit station functionality, e.g., redirect to edit page

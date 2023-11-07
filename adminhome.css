@@ -12,7 +12,7 @@ body{
   align-items: center;
   padding: 10px;
  /* background: linear-gradient(135deg, #ced4d8, #636ae7);*/
- background-image: url(images/car.jpg);
+ background-image: url();
  background-repeat: no-repeat;
  background-size: cover;
   -moz-background-size: cover;
@@ -31,6 +31,7 @@ body{
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
 }
 .container .title{
+  text-align: left;
   font-size: 25px;
   font-weight: 500;
   position: relative;
@@ -123,11 +124,11 @@ form .input-box span.details{
    letter-spacing: 1px;
    cursor: pointer;
    transition: all 0.3s ease;
-   background: linear-gradient(135deg, #e2e7eb,  #4c7cd4);
+   background: linear-gradient(135deg, #e2e7eb,   #333);
  }
  form .button input:hover{
   /* transform: scale(0.99); */
-  background: linear-gradient(-135deg, #90c4e7, #4c7cd4);
+  background: linear-gradient(-135deg, #d3dfe8,  #333);
   }
  @media(max-width: 584px){
  .container{
@@ -154,185 +155,94 @@ form .user-details .input-box{
   }
 }
 
+/* Reset default margin and padding for the body and header */
+body, header, nav, main {
+    margin: 0;
+    padding: 0;
+}
 
-/*body{
-    background: #eef1f5;   
+/* Style the dashboard container */
+.dashboard {
+    display: flex;
 }
-.admin-container {
-    justify-content: center;
-    max-width: px;
-    padding-top: 500px;
-    margin: 0 auto;
-    padding: 50px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background-position: center;
+
+/* Style the header */
+/* Style the header */
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: right;
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
-h2 {
+
+
+header h1 {
+    font-size: 24px;
+    text-align: left;
+}
+
+/* Style for buttons inside the header */
+.header .buttons {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.header .buttons input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.header .buttons input[type="submit"]:hover {
+  background-color: #555;
+}
+
+/* Style the navigation (vertical sidebar) */
+nav {
+    background-color: #333;
+    width: 200px;
+    padding-top: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    margin: 10px 0;
+}
+
+nav a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+}
+
+/* Style the main content container */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Style the registration form container */
+.container {
     text-align: center;
 }
-label {
-    display: block;
-    font-weight: bold;
-}
 
-.head100-form-title {
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-  
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  
-    padding: 20px 15px 74px 15px;
-  }
-  .head100-form-title-2 {
-    font-family: Poppins-Bold;
-    font-size: 25px;
-    color: #fff;
-    text-transform: uppercase;
-    line-height: 1.2;
-    text-align:center;
-  }
-  .head100-form-title::before {
-    content: "";
-    display: block;
-    position: absolute;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(54,84,99,0.7);
-  }
+/* Style your registration form elements as needed */
+/* For example, you can use the existing styles you provided */
 
-  .container-station100-form-btn {
-    width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .station100-form-btn {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    min-width: 160px;
-    height: 50px;
-    background-color: #e4ede3;
-    border-radius: 25px;
-  
-    font-family: Poppins-Regular;
-    font-size: 20px;
-    color: #0f0e0e;
-    line-height: 1.2;
-  
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;
-  }
-  
-  .station100-form-btn:hover {
-    background-color: #949090;
-  }
-
-  @media (max-width: 476px) {
-    .input100-form {
-      padding: 43px 15px 57px 117px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .input100-form {
-      padding: 43px 15px 57px 15px;
-    }
-  
-    .label-input100 {
-      text-align: left;
-      position: center;
-      top: unset;
-      left: unset;
-      width: 100%;
-      padding: 0 5px;
-    }
-  }
-  .wrap-input100 {
-    width: 100%;
-    position: center;
-    border-bottom: 1px solid #ff0f0f;
-  }
-  
-  .label-input100 {
-    font-family: Poppins-Regular;
-    font-size: 20px;
-    color: #efe7e7;
-    line-height: 1.2;
-    text-align: right;
-  
-    position: absolute;
-    top: 14px;
-    left: -105px;
-    width: 80px;
-  
-  }
-  .input100 {
-    font-family: Poppins-Regular;
-    font-size: 15px;
-    color: #080707;
-    line-height: 5.2;
-  
-    display: block;
-    width: 100%;
-    background: rgb(246, 242, 242);
-    padding: 0 3px;
-  }
-  
-  .focus-input100 {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-  }
-  
-  .focus-input100::before {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 1px;
-  
-    -webkit-transition: all 0.6s;
-    -o-transition: all 0.6s;
-    -moz-transition: all 0.6s;
-    transition: all 0.6s;
-  
-    background: #57b846;
-  }
   
   
   /*---------------------------------------------*/
