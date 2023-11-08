@@ -37,7 +37,6 @@ function handleAdapterTypeChange() {
 acAdapter.addEventListener("change", handleAdapterTypeChange);
 dcAdapter.addEventListener("change", handleAdapterTypeChange);
 acDcAdapter.addEventListener("change", handleAdapterTypeChange);
-
 terminalForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -65,35 +64,38 @@ terminalForm.addEventListener("submit", function (e) {
     for (let i = 1; i <= acTerminals; i++) {
         const terminalId = `${stationId}CHAC${i.toString().padStart(3, "0")}`;
         displayTerminal(terminalId);
+        // Save terminal data to Firebase
+        const stationRef = stationsRef.child(stationId);
+        stationRef.child("terminals").push().set({
+            terminalId: terminalId,
+            type: "AC"
+        });
     }
     
     for (let i = 1; i <= dcTerminals; i++) {
         const terminalId = `${stationId}CHDC${i.toString().padStart(3, "0")}`;
         displayTerminal(terminalId);
+        // Save terminal data to Firebase
+        const stationRef = stationsRef.child(stationId);
+        stationRef.child("terminals").push().set({
+            terminalId: terminalId,
+            type: "DC"
+        });
     }
-    
-    // Save terminal data to Firebase (adjust the Firebase structure to match your database)
+
+    // Save the form data to Firebase (adjust the Firebase structure to match your database)
     const stationRef = stationsRef.child(stationId);
-    stationRef.child("terminals").push().set({
-        type: acAdapter.checked ? "AC" : dcAdapter.checked ? "DC" : "AC/DC",
-        amount: acAdapter.checked ? acAmount : dcAdapter.checked ? dcAmount : null
+    stationRef.child("formData").set({
+        stationId: stationId,
+        totalTerminals: totalTerminals,
+        acTerminals: acTerminals,
+        dcTerminals: dcTerminals
     });
 });
 
+// Add this code at the beginning of your editstation.js file
 function displayTerminal(terminalId) {
     const terminalDiv = document.createElement("div");
-    terminalDiv.innerHTML = `Terminal ID: ${terminalId}`;
+    terminalDiv.textContent = `Terminal ID: ${terminalId}`;
     terminalsContainer.appendChild(terminalDiv);
 }
-
-// Initial call to set the initial visibility of amount fields
-handleAdapterTypeChange();
-
-// Select the submit button by its id
-const submitButton = document.getElementById("submitButton");
-
-// Add a click event listener to the submit button
-submitButton.addEventListener("click", function() {
-    // Reload the page
-    location.reload();
-});

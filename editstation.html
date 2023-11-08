@@ -8,8 +8,12 @@
 </head>
 <body>
     <header>
+        <div class="header">
         <h1>ChargeHUB</h1>
         <h2>Station ID: <span id="stationIdHeader"></span></h2>
+        <div class="buttons">
+            <input type="submit" id="station" value="View Terminals">
+        </div></div>
     </header>
     <main>
         <form id="terminalForm">
@@ -43,7 +47,7 @@
                 <input type="number" id="dcAmount" name="dcAmount">
             </div>
             <br>
-            <button type="submit">Generate Terminals</button>
+            <button type="submit" id="generateButton">Generate Terminals</button>
             <div id="terminalsContainer">
                 <!-- Terminals will be displayed here -->
             </div>
