@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Your Dashboard</title>
+</head>
+    <header>
+        <div class="header">
+            <h1>ChargeHUB </h1>
+            <div class="buttons">
+                <input type="submit" id="logoutBtn" value="LOGOUT">
+                <input type="submit" id="view" value="STATION MANAGERS" onclick="window.location.href='admin-dashboard.html'">
+                <input type="submit" id="station" value="STATIONS" onclick="window.location.href='viewstation.html'">
+                <input type="submit" id="home" value="ADD STATION MANAGER" onclick="window.location.href='adminhome.html'">
+            </div>
+          </div>
+    </header>
+    <body>
+            <p class="split-color">Building  Greener future:</p>
+            <h3 class="split">Innovative Electric car Charging Stations!!!!!!</h3>
+
+            
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

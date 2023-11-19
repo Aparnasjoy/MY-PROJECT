@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Vehicle Type</title>
+    <link rel="stylesheet" href="addvehicle.css">
+</head>
+<body>
+    <header>
+        <div class="dashboard-header">ChargeHUB</div>
+    </header>
+    <div class="container">
+        <h2>Select Vehicle Type</h2>
+        <div class="options">
+            <div class="option" onclick="selectOption(1)">
+                <img src="vehicle/scooty.png" alt="Icon 1">
+                <p>Two Wheeler</p>
+            </div>
+            <div class="option" onclick="selectOption(2)">
+                <img src="vehicle/rickshaw.png" alt="Icon 2">
+                <p>Three Wheeler</p>
+            </div>
+            <div class="option" onclick="selectOption(3)">
+                <img src="vehicle/car.png" alt="Icon 3">
+                <p>Four Wheeler</p>
+            </div>
+            <div class="option" onclick="selectOption(4)">
+                <img src="vehicle/heavy.png" alt="Icon 4">
+                <p>Heavy</p>
+            </div>
+        </div>
+    </div>
+    <div class="brands-container">
+        <h2>Select Brand</h2>
+        <div class="brands" id="brandsContainer">
+            <P>BRANDS HERE!!!!!!!!</P>
+            <!-- Brands will be dynamically added here based on the selected vehicle type -->
+        </div>
+    </div>
+
+    <div class="vehicle-info-container">
+        <h2>Enter Vehicle Information</h2>
+        <label for="vehicleNumber">Vehicle Number:</label>
+        <input type="text" id="vehicleNumber" placeholder="AA 00 AA 0000">
+
+        <button onclick="saveVehicle()">Save Vehicle</button>
+
+        <div id="selectedInfo">
+            <!-- Selected options and vehicle number will be displayed here -->
+        </div>
+    </div>
+
+   
+
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="addvehicle.js"></script>
+</body>
+</html>

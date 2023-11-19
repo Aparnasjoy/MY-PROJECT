@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Add your head content here -->
+  <link rel="stylesheet" href="findstation.css">
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="logo">
+      <a href="index.html" class="js-logo-clone">ChargeHub</a>
+    </div>
+    <div class="logout">
+      <a href="index.html" id="logoutButton">LOGOUT</a>
+    </div>
+  </div>
+
+  
+
+  <div class="page-content">
+    <div class="form-section">
+      <div class="form-box">
+        <h2>Select Vehicle</h2>
+        <form id="selectVehicleForm">
+          <label for="vehicleDropdown">Choose your vehicle:</label>
+          <select id="vehicleDropdown" name="vehicleDropdown"></select>
+
+          <div id="selectedStationDetails">
+            <label for="stationName">Station Name:</label>
+            <div id="stationName"></div>
+            <label for="stationLocation">Station Location:</label>
+            <div id="Location"></div>
+          </div>
+          
+          
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+ 
+      <img src="images/car.jpg" alt="Image for Style">
+    </div>
+  </div>
+
+ 
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="findstation.js"></script>
+  <!-- Add your script tags for Firebase and your JavaScript files here -->
+  <script>
+    // Get the station ID from the query parameter
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const stationId = urlParams.get('stationId');
+    console.log('Station ID:', stationId);
+    // Initialize the findstation.js logic
+    initFindStation(stationId);
+  </script>
+  
+</body>
+
+</html>

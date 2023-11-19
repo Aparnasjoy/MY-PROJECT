@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="terminal.css"> <!-- You can create a separate CSS file for the terminal page -->
+    <title>Terminal Page</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+        <h1>ChargeHUB</h1>
+        <h2>Station ID: <span id="stationIdHeader"></span></h2>
+        </div>
+    </header>
+    <main>
+        <h3>AC Terminals</h3>
+        <table id="acTerminalsTable">
+            <thead>
+                <tr>
+                    <th>Terminal ID</th>
+                    <th>Slot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- AC terminals will be displayed here -->
+            </tbody>
+        </table>
+
+        <h3>DC Terminals</h3>
+        <table id="dcTerminalsTable">
+            <thead>
+                <tr>
+                    <th>Terminal ID</th>
+                    <th>Slot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- DC terminals will be displayed here -->
+            </tbody>
+        </table>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="terminal.js"></script> <!-- JavaScript for terminal handling -->
+</body>
+</html>

@@ -14,7 +14,6 @@
                 <div class="user-session">
                     <span id="currentUserEmail">user@example.com</span>
                     <span><button id="logoutButton">Logout</button></span>
-                    <a href="forgot-password.html" id="resetPasswordButton">Reset Password</a>
                 </div>
             </div>
         </nav>
@@ -33,12 +32,19 @@
             <label for="location">Location:</label>
             <input type="text" id="location" name="location" required>
             <br>
+            <label for="latitude">Latitude:</label>
+            <input type="text" id="latitude" name="latitude" required>
+            <br>
+
+            <label for="longitude">Longitude:</label>
+            <input type="text" id="longitude" name="longitude" required>
+            <br>
 
            
 
-            <button type="submit">Submit</button>
+            <button type="submit">SUBMIT</button>
             <br><br>
-            <button id="updateStationButton" onclick="redirectToUpdateStation()">Update Station</button>
+            <button id="updateStationButton" onclick="redirectToUpdateStation()">VIEW STATIONS</button>
 
         </form>
     </main>

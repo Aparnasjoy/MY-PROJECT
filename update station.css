@@ -57,6 +57,21 @@ header {
     background-color: #8a8282;
 }
 
+#station {
+    background-color: #d6cccc;
+    color: #130a0a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#station:hover {
+    background-color: #8a8282;
+}
+
+
+
 /* Main content styles */
 main {
     background-color: #f0eaea;
@@ -66,11 +81,9 @@ main {
     margin-top: 20px;
 }
 
-h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #c2bfbf;
-}
+
+
+
 
 .station-table {
     width: 50%;

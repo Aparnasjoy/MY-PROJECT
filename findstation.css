@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+  }
+  
+  .header {
+    background-color: #333;
+    padding: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+  }
+  
+  .logout a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .page-content {
+    display: flex;
+    height: calc(100vh - 90px); /* Adjusted for header height */
+  }
+  
+  .form-section {
+    flex: 1;
+    padding: 20px;
+    background-color: #f2f2f2;
+  }
+  
+  .form-section h2 {
+    color: #333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  select {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .image-section {
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Add your existing styles here */
+  /* styles.css */
+
+.page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+  }
+  
+  .form-section {
+    text-align: center;
+  }
+  
+  .form-box {
+    border: 2px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  /* Add more styles as needed */
+  

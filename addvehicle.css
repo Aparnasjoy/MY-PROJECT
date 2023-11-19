@@ -1,0 +1,126 @@
+header {
+    background-color: #cfd8dd;
+    color: #fff;
+    padding: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-header {
+    font-size: 50px;
+    
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #ffffff;
+    border: 2px solid #ccc; /* Add this line to set border properties */
+    padding: 20px;
+    
+    
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.options {
+    display: flex;
+    justify-content: space-around;
+}
+
+.option {
+    width: 150px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.option.selected {
+    border: 2px solid red;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    border: 2px solid #ccc; /* Add this line to set border properties */
+    padding: 20px;
+    
+}
+
+
+.brands-container,p {
+    text-align: left;
+    font-size: 34 px;
+}
+
+.brands-table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.brands-row {
+    display:flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.brand {
+    flex: 0 0 30%; /* Adjust the width as needed */
+    cursor: pointer;
+    transition: border-color 0.3s;
+    border: 2px solid transparent;
+}
+
+.brand.selected {
+    border-color: red;
+  
+}
+
+.brand img {
+    width: 10%;
+    max-height: 80px; /* Adjust the max-height as needed */
+    object-fit: contain;
+}
+
+.brand p {
+    margin-top: 5px;
+}
+
+/* ... Other styles ... */
+
+.vehicle-info-container {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    background-color: #3498db; /* Change the background color to a more vibrant blue */
+    padding: 20px;
+    color: #fff; /* Change text color to white */
+    border-radius: 10px; /* Add border-radius for rounded corners */
+}
+
+/* Style for the Save Vehicle button */
+.vehicle-info-container button {
+    background-color: #2ecc71; /* Green button */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* ... Other styles ... */
+

@@ -1,0 +1,89 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #faf7f7;
+}
+
+header {
+    background-color: #cfd8dd;
+    color:  #cfd8dd;
+    text-align: center;
+    padding: 1em;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dashboard-section {
+    background-color: #f3f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+.dashboard-icons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dashboard-icon {
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.dashboard-icon img {
+    width: 50px;
+    height: 50px;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Add your existing styles here */
+
+.btn-find-station {
+    display: inline-block;
+    background-color: #f2f5f2;
+    color: #81e9e2;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 25px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-find-station:hover {
+    background-color: rgb(162, 237, 233, 122, 160);
+  }
+  
+  .btn-find-station span {
+    margin-left: 10px;
+  }
+  
+  /* Add your existing styles here */
+  

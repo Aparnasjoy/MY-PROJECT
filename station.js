@@ -65,6 +65,8 @@ window.addEventListener("pageshow", function (event) {
     }
 });
 
+// ... (previous code)
+
 const stationForm = document.getElementById("stationForm");
 
 stationForm.addEventListener("submit", function (e) {
@@ -72,9 +74,10 @@ stationForm.addEventListener("submit", function (e) {
 
     // Get form data
     const stationIdField = document.getElementById("stationId");
-
     const stationName = document.getElementById("stationName").value;
     const location = document.getElementById("location").value;
+    const latitude = document.getElementById("latitude").value; // Add this line
+    const longitude = document.getElementById("longitude").value; // Add this line
 
     // Get the currently logged-in user's email (manager's email)
     const user = firebase.auth().currentUser;
@@ -86,6 +89,8 @@ stationForm.addEventListener("submit", function (e) {
             stationId: stationIdField.value,
             stationName: stationName,
             location: location,
+            latitude: latitude, // Add this line
+            longitude: longitude, // Add this line
             managerId: managerId,
         };
 
@@ -99,8 +104,6 @@ stationForm.addEventListener("submit", function (e) {
                 stationForm.reset();
 
                 // Reload the page to get the updated station ID
-                
-
             })
             .catch((error) => {
                 console.error("Error saving data:", error);
@@ -113,6 +116,9 @@ stationForm.addEventListener("submit", function (e) {
         return currentCounter + 1;
     });
 });
+
+// ... (remaining code)
+
 
 function redirectToUpdateStation() {
     // Redirect to the updatestation.html page

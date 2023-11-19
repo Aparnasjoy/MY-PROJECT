@@ -32,6 +32,13 @@ logoutButton.addEventListener("click", () => {
     });
 });
 
+// Prevent going back after logout
+window.addEventListener("pageshow", function (event) {
+    // If the page was shown through the back button, redirect to index.html
+    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+      window.location.href = "index.html";
+    }
+  });
 function loadStations() {
     const stationsContainer = document.getElementById("stationsContainer");
 
@@ -71,7 +78,7 @@ function loadStations() {
 
                         // Create an edit button
                         const editButton = document.createElement("button");
-                        editButton.innerText = "ADD TERMINALS";
+                        editButton.innerText = "TERMINALS";
                         editButton.addEventListener("click", () => {
                             window.location.href = `editstation.html?stationId=${station.stationId}`;
                             // Handle edit station functionality, e.g., redirect to edit page

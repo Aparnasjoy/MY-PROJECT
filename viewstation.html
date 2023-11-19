@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="viewstation.css"> <!-- You can create a separate CSS file for styling -->
+    <title>View Stations</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h1>ChargeHUB</h1>
+        </div>
+    </header>
+    <main>
+        <h2>ChargeHUB Stations</h2>
+        <main>
+           
+            <table id="stationsTable">
+                <thead>
+                    <tr>
+                        <th>Station ID</th>
+                        <th>Station Manager</th>
+                        <th>Location</th>
+                        <th>Total Terminals</th>
+                        <th>AC Terminals</th>
+                        <th>DC Terminals</th>
+                    </tr>
+                </thead>
+                <tbody id="stationsList">
+                    <!-- Station details will be displayed here -->
+                </tbody>
+            </table>
+        </main>
+            <!-- Stations will be displayed here -->
+        </div>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="viewstation.js"></script> <!-- JavaScript for displaying stations -->
+</body>
+</html>
