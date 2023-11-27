@@ -4,68 +4,124 @@ body {
     padding: 0;
 }
 
+.background-container {
+    background-image: url('images/charge.jpg'); /* Replace with the path to your background image */
+    background-size: cover;
+    background-position: left center; /* Adjust the background position */
+    height: 30vh; /* Adjust the height as needed */
+    width: 25vw; /* Adjust the width as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+
 header {
-    background-color: #cfd8dd;
+    background-color: #5eb3b4;
     color: #fff;
     padding: 35px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 2; /* Ensure the header stays on top of the background */
 }
 
 .header-title {
-    font-size: 2em;
+    font-size: 45px;
+    font-family: 'Arial', sans-serif; /* Add your desired font family */
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    animation: float 3s infinite ease-in-out; /* Add floating animation */
 }
 
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Adjust the floating distance */
+    }
+}
+
+
 .add-button {
-    background-color: #5f6863;
-    color: #fff;
+    background-color: #f6f9f8;
+    color:  #7ddedf;
     border: none;
-    font-size: 1.5em;
+    font-size: 3em;
     cursor: pointer;
 }
 
-
 .logo {
-    font-size: 24px;
+    font-size: 50px;
     font-weight: bold;
+    font-family:Cursive;
+    color: #5eb3b4;
 }
-
-
 
 .add-button:hover {
-    background-color: #e1e7e2;
+    background-color: #75dcdc;
 }
 
+/* Vehicle info container styles */
 .vehicle-info-container {
+    margin-left: 500px;
     max-width: 800px;
-    margin: 20px auto;
+    margin-top: 100px;
     padding: 20px;
-    border: 1px solid rgb(224, 230, 224)
+    border: 1px solid rgb(134, 215, 215);
+    position: relative;
+    z-index: 1; /* Ensure the vehicle-info-container stays on top of the background */
+}
+.vehicle-info-container,h2{
+    color: #5eb3b4;
+   
 }
 
+/* Vehicle container styles */
 .vehicle-container {
     margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 20px;
+    border: 1px solid #65c5c5;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background-color: #f6f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.vehicle-container p {
+.vehicle-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Vehicle details styles */
+.vehicle-details {
+    flex: 1;
+}
+
+.vehicle-details p {
     margin: 0;
 }
 
+/* Delete button styles */
 .delete-button {
     background-color: #f44336;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .delete-button:hover {
     background-color: #d32f2f;
 }
-
-

@@ -1,5 +1,13 @@
+/* Reset and basic styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Header styles */
 header {
-    background-color: #cfd8dd;
+    background-color: #5eb3b4;
     color: #fff;
     padding: 35px;
     display: flex;
@@ -9,31 +17,50 @@ header {
 
 .dashboard-header {
     font-size: 50px;
-    
+    font-family:Cursive;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+.back-button {
+    background-color: #f6f9f8;
+    color:  #7ddedf;
+    border: none;
+    font-size: 3em;
+    cursor: pointer;
 }
 
+.logo {
+    font-size: 50px;
+    font-weight: bold;
+    font-family:Cursive;
+}
+
+.back-button:hover {
+    background-color: #77b4b4;
+}
+/* Container styles */
 .container {
     max-width: 800px;
     margin: 50px auto;
     text-align: center;
     background-color: #ffffff;
-    border: 2px solid #ccc; /* Add this line to set border properties */
+    border: 2px solid #ccc;
     padding: 20px;
-    
-    
+}
+.container h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color:#5eb3b4; /* Adjust the color based on your design */
 }
 
-h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.brands-container h2 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color:#5eb3b4; /* Adjust the color based on your design */
 }
 
+/* Options styles */
 .options {
     display: flex;
     justify-content: space-around;
@@ -49,19 +76,19 @@ h2 {
     border: 2px solid red;
 }
 
+/* Image styles */
 img {
     width: 100px;
     height: 100px;
     margin-bottom: 10px;
-    border: 2px solid #ccc; /* Add this line to set border properties */
+    border: 2px solid #ccc;
     padding: 20px;
-    
 }
 
-
-.brands-container,p {
+/* Brands styles */
+.brands-container p {
     text-align: left;
-    font-size: 34 px;
+    font-size: 34px;
 }
 
 .brands-table {
@@ -71,13 +98,13 @@ img {
 }
 
 .brands-row {
-    display:flex;
+    display: flex;
     justify-content: space-around;
     margin-bottom: 10px;
 }
 
 .brand {
-    flex: 0 0 30%; /* Adjust the width as needed */
+    flex: 0 0 30%;
     cursor: pointer;
     transition: border-color 0.3s;
     border: 2px solid transparent;
@@ -85,12 +112,11 @@ img {
 
 .brand.selected {
     border-color: red;
-  
 }
 
 .brand img {
-    width: 10%;
-    max-height: 80px; /* Adjust the max-height as needed */
+    width: 30%;
+    max-height: 80px;
     object-fit: contain;
 }
 
@@ -98,29 +124,117 @@ img {
     margin-top: 5px;
 }
 
-/* ... Other styles ... */
-
+/* Vehicle info container styles */
 .vehicle-info-container {
-    max-width: 800px;
+    max-width: 500px;
     margin: 20px auto;
     text-align: center;
-    background-color: #3498db; /* Change the background color to a more vibrant blue */
+    background: linear-gradient(to right, #3498db, #2073c4);
     padding: 20px;
-    color: #fff; /* Change text color to white */
-    border-radius: 10px; /* Add border-radius for rounded corners */
+    color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Style for the Save Vehicle button */
+.vehicle-info-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
 .vehicle-info-container button {
-    background-color: #2ecc71; /* Green button */
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.vehicle-info-container button:hover {
+    background-color: #27ae60;
+}
+
+
+/* Options hover effect */
+.option {
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    background-color: #e8eaec;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.option:hover {
+    background-color: #fefeff;
+}
+
+/* Option selected styles */
+.option.selected {
+    background-color: #e9ecf0;
+}
+
+/* Brands container styles */
+#brandsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+/* Brand styles */
+.brand {
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.brand:hover {
+    transform: scale(1.05);
+}
+
+.brand.selected {
+    border-color: red;
+    color: #fff;
+}
+
+.brand img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+/* Vehicle number input styles */
+#vehicleNumber {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Save button styles */
+#saveButton {
+    background-color: #27ae60;
     color: #fff;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 10px;
 }
 
-/* ... Other styles ... */
-
+#saveButton:hover {
+    background-color: #219d54;
+}

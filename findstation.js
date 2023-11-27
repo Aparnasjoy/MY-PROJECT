@@ -1,7 +1,11 @@
+// Assuming you have a Firebase configuration in firebase-config.js
+// Initialize the Firebase app with your configuration
 firebase.initializeApp(firebaseConfig);
+
 const auth = firebase.auth();
-var db = firebase.database();
-const stationsRef = firebase.database().ref("station");
+const db = firebase.database();
+const vehiclesRef = db.ref("users");
+const stationsRef = db.ref("station");
 
 // Wait for the authentication state to change
 auth.onAuthStateChanged((user) => {
@@ -38,55 +42,55 @@ function displayVehicles(user) {
     });
 }
 
-// Add an event listener to the form for handling submission
-const selectVehicleForm = document.getElementById('selectVehicleForm');
-selectVehicleForm.addEventListener('submit', function (event) {
-  event.preventDefault(); // Prevent the default form submission
-  const selectedVehicleKey = document.getElementById('vehicleDropdown').value;
-  // Handle the selected vehicle key as needed
-  console.log('Selected Vehicle Key:', selectedVehicleKey);
-});
+function populateStationsDropdown() {
+  const stationDropdown = document.getElementById("stationDropdown");
 
-function initFindStation() {
-    // Get the station ID from the query parameter
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const stationId = urlParams.get('stationId');
-  
-    console.log('Station ID:', stationId);
-  
-    console.log('Fetching station details for stationId:', stationId);
-  
-    // Fetch and display station details
-    stationsRef.child(stationId).once('value')
-      .then((snapshot) => {
-        console.log('Snapshot:', snapshot.val()); // Log the snapshot data
-        const stationData = snapshot.val();
-        if (stationData) {
-          // Update the content dynamically
-          const stationDetailsContainer = document.getElementById('selectedStationDetails');
-          const stationNameElement = document.getElementById('stationName');
-          const stationLocationElement = document.getElementById('Location');
-  
-          // Adjust the path to match your database structure
-          stationNameElement.textContent = stationData.stationName;
-          stationLocationElement.textContent = stationData.location;
-  
-          // Show the details container
-          stationDetailsContainer.style.display = 'block';
-        } else {
-          // Hide the details container if no station is found
-          const stationDetailsContainer = document.getElementById('selectedStationDetails');
-          stationDetailsContainer.style.display = 'none';
-        }
+  // Remove existing options
+  stationDropdown.innerHTML = "";
+
+  // Fetch stations from the database
+  stationsRef.once("value")
+    .then(snapshot => {
+      snapshot.forEach(stationSnapshot => {
+        const stationName = stationSnapshot.child("stationName").val();
+        const option = document.createElement("option");
+        option.value = stationName;
+        option.textContent = stationName;
+        stationDropdown.appendChild(option);
+      });
+    })
+    .catch(error => {
+      console.error("Error fetching stations:", error);
+    });
+}
+
+// Call the function to populate stations on page load
+populateStationsDropdown();
+
+// Get the submit button element
+const submitButton = document.getElementById('submitButton');
+
+// Attach the event listener to the submit button
+submitButton.addEventListener('click', () => {
+  console.log('Button clicked!');
+
+  const selectedVehicle = document.getElementById('vehicleDropdown').value;
+  const selectedStation = document.getElementById('stationDropdown').value;
+
+  if (selectedVehicle && selectedStation) {
+    // ... (rest of your code)
+
+    db.ref(`users/${auth.currentUser.uid}/chargingHistory`).push(chargingHistoryEntry)
+      .then(() => {
+        alert('Charging history stored successfully.');
+        console.log('Navigation to selectterminal.html');
+        // Navigate to the selectterminal page
+        window.location.href = 'selectterminal.html';
       })
       .catch((error) => {
-        console.error('Error fetching station details:', error);
-        // Hide the details container on error
-        const stationDetailsContainer = document.getElementById('selectedStationDetails');
-        stationDetailsContainer.style.display = 'none';
+        // ... (rest of your error handling code)
       });
+  } else {
+    // ... (rest of your else code)
   }
-
-// Call initFindStation when the DOM is loaded
-document.addEventListener('DOMContentLoaded', initFindStation);
+});

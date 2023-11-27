@@ -2,7 +2,14 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #faf7f7;
+    background-color: #fffefe;
+    background-image: url('images/charge1.jpg'); /* Replace 'your-background-image.jpg' with the path to your background image */
+    background-size: 20%; /* This property ensures that the background image covers the entire body */
+    background-position: left; /* This property centers the background image */
+    background-repeat: no-repeat; /* This property ensures that the background image is not repeated */
+    top: 50%;
+    right: 0;
+    bottom: 0;
 }
 
 header {

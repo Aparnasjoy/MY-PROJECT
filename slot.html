@@ -15,8 +15,23 @@
         </div>
     </header>
     <main>
-        <!-- Slot content goes here -->
+        <div>
+            <label for="startTime">Start Time:</label>
+            <input type="time" id="startTime">
+        </div>
+        <div>
+            <label for="endTime">End Time:</label>
+            <input type="time" id="endTime">
+        </div>
+        <button onclick="createSlots()">Create Slots</button>
+
+        <div id="slotsContainer"></div>
+
+        <button type="submit" id="submitButton">SUBMIT</button>
+        
+       
     </main>
+   
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>

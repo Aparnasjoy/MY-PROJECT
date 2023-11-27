@@ -44,7 +44,7 @@ function updateBrands(vehicleType) {
             addBrand('Dao', 'dao2.jpg');
             addBrand('Ola', 'ola2.png'); 
             addBrand('Elthor', 'elthor2.jpg');
-             addBrand('TVS', 'tvs2.png');
+            addBrand('TVS', 'tvs2.png');
             break;
         case 2:
             addBrand('Altigreen', 'altigreen3.png');
@@ -88,7 +88,7 @@ function addBrand(brandName, brandIcon) {
     brandLabel.textContent = brandName;
 
     brandDiv.appendChild(brandImage);
-    brandDiv.appendChild(brandLabel);
+   
 
     brandsContainer.appendChild(brandDiv);
 
