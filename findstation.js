@@ -1,5 +1,3 @@
-// Assuming you have a Firebase configuration in firebase-config.js
-// Initialize the Firebase app with your configuration
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
@@ -67,6 +65,55 @@ function populateStationsDropdown() {
 // Call the function to populate stations on page load
 populateStationsDropdown();
 
+// ... (your existing code)
+
+// ... (your existing code)
+
+// Get the AC and DC buttons
+const acButton = document.getElementById('acButton');
+const dcButton = document.getElementById('dcButton');
+
+// Attach event listeners to the AC and DC buttons
+acButton.addEventListener('click', () => {
+  displayTerminals(selectedStation, 'AC');
+});
+
+dcButton.addEventListener('click', () => {
+  displayTerminals(selectedStation, 'DC');
+});
+
+// ... (your existing code)
+
+// Function to display terminals for the selected station and type
+function displayTerminals(selectedStation, type) {
+  // Assuming you have a reference to the 'stations' node in the database
+  const stationRef = db.ref(`stations/${selectedStation}/terminals`);
+
+  // Fetch terminals from the database
+  stationRef.once('value')
+    .then(snapshot => {
+      // Get the div where you want to display terminals
+      const terminalsDiv = document.getElementById('terminalsDiv');
+      
+      // Clear existing content
+      terminalsDiv.innerHTML = "";
+
+      snapshot.forEach(terminalSnapshot => {
+        const terminalData = terminalSnapshot.val();
+        if (terminalData.type === type) {
+          const option = document.createElement("p");
+          option.textContent = terminalData.terminalId;
+          terminalsDiv.appendChild(option);
+        }
+      });
+    })
+    .catch(error => {
+      console.error("Error fetching terminals:", error);
+    });
+}
+
+// ... (your existing code)
+
 // Get the submit button element
 const submitButton = document.getElementById('submitButton');
 
@@ -78,19 +125,34 @@ submitButton.addEventListener('click', () => {
   const selectedStation = document.getElementById('stationDropdown').value;
 
   if (selectedVehicle && selectedStation) {
-    // ... (rest of your code)
+    // Create a charging history entry
+    const chargingHistoryEntry = {
+      vehicle: selectedVehicle,
+      station: selectedStation,
+      timestamp: firebase.database.ServerValue.TIMESTAMP,
+    };
 
+    // Store the charging history in the user's database node
     db.ref(`users/${auth.currentUser.uid}/chargingHistory`).push(chargingHistoryEntry)
       .then(() => {
         alert('Charging history stored successfully.');
-        console.log('Navigation to selectterminal.html');
-        // Navigate to the selectterminal page
-        window.location.href = 'selectterminal.html';
+        console.log('Displaying terminals for selected station');
+        
+        // Call the function to display terminals
+        terminaldisplay(selectedStation);
+        
+        // Optionally, you can navigate to the selectterminal.html page here
+        // window.location.href = 'selectterminal.html';
       })
       .catch((error) => {
-        // ... (rest of your error handling code)
+        // Handle the error
+        console.error('Error storing charging history:', error);
+        alert('Error storing charging history. Please try again.');
       });
   } else {
-    // ... (rest of your else code)
+    // Handle the case where the user hasn't selected both vehicle and station
+    alert('Please select both vehicle and station before submitting.');
   }
 });
+
+// ... (your existing code)

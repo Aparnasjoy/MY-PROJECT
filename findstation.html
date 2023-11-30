@@ -28,8 +28,18 @@
           <label for="stationDropdown">Choose a station:</label>
           <select id="stationDropdown" name="stationDropdown"></select>
 <!-- Add this element to your HTML file -->
-<button id="submitButton">Submit</button>
 
+         <!-- Add this element to your HTML file -->
+<button id="acButton">AC Terminals</button>
+<button id="dcButton">DC Terminals</button>
+
+<!-- Display terminals container -->
+<div id="terminalsContainer">
+  <div id="terminalsDiv"></div>
+</div>
+
+        <button id="submitButton" >Submit</button>
+        
         </form>
       </div>
     </div>
@@ -44,8 +54,6 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="firebase-config.js"></script>
   <script src="findstation.js"></script>
-  <!-- Add your script tags for Firebase and your JavaScript files here -->
-  
 
 </body>
 

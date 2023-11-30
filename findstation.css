@@ -61,6 +61,24 @@ body {
     cursor: pointer;
   }
   
+  #acButton, #dcButton {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #b6edb8;
+    width: 50%;
+  }
+  
+  /* Style for the terminals container */
+  #terminalsContainer {
+    margin-top: 20px;
+  }
+
+  #terminalsDiv {
+    margin-top: 10px;
+  }
+
   button:hover {
     background-color: #45a049;
   }
@@ -101,3 +119,20 @@ body {
   
   /* Add more styles as needed */
   
+  /* Add your existing styles */
+
+#selectedInfo {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#selectedInfo p {
+  margin: 0;
+  padding: 5px;
+  font-size: 16px;
+  color: #333;
+}
