@@ -1,0 +1,30 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    
+    "users": {
+      "$uid": {
+        ".read": "auth.uid == $uid",
+        ".write": "auth.uid == $uid"
+      },
+    },
+    
+    "station_managers": {
+   ".read": "auth != null",
+   ".write": "auth != null"
+},
+    
+    "station": {
+      "$stationId": {
+         ".read": "auth != null",  // Allow any authenticated user to read data for any station
+        ".write": "auth != null && root.child('station_managers').child(auth.uid).exists()",  
+        "terminals": {
+          ".read": "auth != null",
+          ".write": "auth != null"
+        }
+      },
+      ".indexOn": ["managerId"]
+    }
+  }
+}
