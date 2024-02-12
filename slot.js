@@ -1,8 +1,9 @@
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-var db = firebase.database();
-const stationsRef = db.ref("station");
-
+// Reference to Firestore collection
+const firestore = firebase.firestore();
+const terminalsCollection = firestore.collection("terminals");
 
 // Retrieve the terminal ID from the query parameter in the URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -18,14 +19,8 @@ const terminalId = urlParams.get("terminalId");
 const terminalIdHeader = document.getElementById("terminalIdHeader");
 terminalIdHeader.textContent = terminalId;
 
-// You can add additional JavaScript logic for your slot page below
-
-// slot.js
-
-
-
-// Reference to Firebase slots data
-const slotsRef = firebase.database().ref(`stations/${stationId}/terminals/${terminalId}/slots`);
+// Reference to Firebase Realtime Database slots data
+const slotsRef = firebase.database().ref(`terminals/${stationId}/${terminalId}/slots`);
 
 // Wait for the authentication state to change
 firebase.auth().onAuthStateChanged((user) => {
@@ -69,18 +64,15 @@ function createSlots() {
         return;
     }
 
-    const slotsContainer = document.getElementById('slotsContainer');
-    slotsContainer.innerHTML = ''; // Clear previous content
-
     // Calculate the number of slots based on a fixed duration (e.g., 2 hours)
     const slotDuration = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
     const startDate = new Date(`01/01/2000 ${startTime}`);
     const endDate = new Date(`01/01/2000 ${endTime}`);
     let currentSlotStart = startDate.getTime();
 
-    while (currentSlotStart + slotDuration <= endDate.getTime()) {
-        const slotElement = document.createElement('div');
+    const slotsBatch = firestore.batch(); // Create a batch for batched write operations
 
+    while (currentSlotStart + slotDuration <= endDate.getTime()) {
         // Format slot start and end times
         const slotStartTime = new Date(currentSlotStart);
         const slotEndTime = new Date(currentSlotStart + slotDuration);
@@ -89,11 +81,19 @@ function createSlots() {
         const formattedEndTime = slotEndTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
         const slotId = `${formattedStartTime}-${formattedEndTime}`;
-        slotElement.textContent = `Slot ID: ${slotId}, Status: Available`;
-        slotsContainer.appendChild(slotElement);
 
-        // Save the slot data to Firebase
+        // Save the slot data to Firebase Realtime Database
         slotsRef.child(slotId).set({
+            status: 'Available'
+        });
+
+        // Save the slot data to Firestore
+        const slotDocRef = firestore.collection("terminals").doc(terminalId).collection("slots").doc(slotId);
+        slotsBatch.set(slotDocRef, {
+            stationId,
+            terminalId,
+            startTime: formattedStartTime,
+            endTime: formattedEndTime,
             status: 'Available'
         });
 
@@ -101,11 +101,12 @@ function createSlots() {
         currentSlotStart += slotDuration;
     }
 
-    alert('Slots created successfully!');
+    slotsBatch.commit() // Commit the batched write operations
+        .then(() => {
+            alert('Slots created successfully!');
+        })
+        .catch((error) => {
+            console.error('Error creating slots:', error);
+            alert('Error creating slots. Please try again.');
+        });
 }
-
-
-document.getElementById("submitButton").addEventListener("click", function () {
-    // Reload the page
-    location.reload();
-});

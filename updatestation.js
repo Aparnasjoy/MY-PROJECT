@@ -78,7 +78,7 @@ function loadStations() {
 
                         // Create an edit button
                         const editButton = document.createElement("button");
-                        editButton.innerText = "TERMINALS";
+                        editButton.innerText = "Add TERMINALS";
                         editButton.addEventListener("click", () => {
                             window.location.href = `editstation.html?stationId=${station.stationId}`;
                             // Handle edit station functionality, e.g., redirect to edit page
@@ -86,10 +86,24 @@ function loadStations() {
                             // window.location.href = `editstation.html?stationId=${station.stationId}`;
                         });
 
-                        // Append the edit button to the table
+                        // Create a view terminals button
+                        const viewTerminalsButton = document.createElement("button");
+                        viewTerminalsButton.innerText = "View Terminals";
+                        viewTerminalsButton.addEventListener("click", () => {
+                            window.location.href = `terminal.html?stationId=${station.stationId}`;
+                            // Handle view terminals functionality
+                        });
+
+                        // Create a single row for both buttons
                         const row4 = table.insertRow(3);
+
+                        // Create a cell for the edit button
                         const cell7 = row4.insertCell(0);
                         cell7.appendChild(editButton);
+
+                        // Create a cell for the view terminals button
+                        const cell8 = row4.insertCell(1);
+                        cell8.appendChild(viewTerminalsButton);
 
                         // Append the table to the container
                         stationsContainer.appendChild(table);

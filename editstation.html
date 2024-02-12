@@ -20,9 +20,6 @@
         <form id="terminalForm">
             <h2> TERMINAL DETAILS</h2>
             
-            <label for="totalTerminals">Total Terminals:</label>
-            <input type="number" id="totalTerminals" name="totalTerminals" required>
-            <br>
 
             <label for="acTerminals">AC Terminal Ports:</label>
             <input type="number" id="acTerminals" name="acTerminals" required>
@@ -32,38 +29,21 @@
             <input type="number" id="dcTerminals" name="dcTerminals" required>
             <br>
 
-            <label>Enter Amount (kWh):</label>
-            <input type="radio" id="acAdapter" name="adapterType" value="AC"> AC
-            <input type="radio" id="dcAdapter" name="adapterType" value="DC">   DC
-            <input type="radio" id="acDcAdapter" name="adapterType" value="ACDC">  AC & DC
-            <br>
-
-            <div id="acAmountField" style="display: none;">
-                <label for="acAmount">AC Terminal(per hour):</label>
-                <input type="number" id="acAmount" name="acAmount">
-            </div>
-
-            <div id="dcAmountField" style="display: none;">
-                <label for="dcAmount">DC Terminal(per hour):</label>
-                <input type="number" id="dcAmount" name="dcAmount">
-            </div>
-            <br>
+            
             <button type="submit" id="generateButton">Generate Terminals</button>
        
 
             <div id="terminalsContainer">
                 <!-- Terminals will be displayed here -->
-            </div>
+           </div>
             <button type="submit" id="submitButton">SUBMIT</button>
-        </form>
         
-            
-            
         </form>
     </main>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="firebase-config.js"></script>
     <script src="editstation.js"></script> <!-- JavaScript for form handling -->
 </body>

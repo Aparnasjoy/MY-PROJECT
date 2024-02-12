@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="bookslot.css">
+</head>
+
+<body>
+
+  <div class="page-content">
+    <div class="form-section">
+      <div class="form-box">
+        <h2>Select Vehicle and Station</h2>
+        <form id="selectVehicleForm">
+          <!-- Vehicle Dropdown -->
+          <label for="vehicleDropdown">Choose your vehicle:</label>
+          <select id="vehicleDropdown" name="vehicleDropdown"></select>
+
+         <!-- Station Dropdown -->
+<label for="stationDropdown">Choose a station:</label>
+<select id="stationDropdown" name="stationDropdown" onchange="fetchTerminals()"></select>
+
+
+          <!-- Terminals Container -->
+          <div id="terminalsContainer"></div>
+
+          <button id="submitButton">Submit</button>
+          <button id="paymentButton">Proceed to Payment</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="image-section">
+      <img src="images/charge4.jpg" alt="Image for Style">
+    </div>
+  </div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="bookslot.js"></script>
+
+</body>
+
+</html>

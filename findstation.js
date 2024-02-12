@@ -1,9 +1,17 @@
+// Initialize Firebase and authentication
 firebase.initializeApp(firebaseConfig);
-
 const auth = firebase.auth();
 const db = firebase.database();
 const vehiclesRef = db.ref("users");
 const stationsRef = db.ref("station");
+
+// Declare selectedStation globally
+let selectedStation;
+// Configure Razorpay
+const razorpay = new Razorpay({
+  key: 'rzp_test_HaKkOFpjivI4is', // Replace with your actual Razorpay key
+  // Add other required configuration options
+});
 
 // Wait for the authentication state to change
 auth.onAuthStateChanged((user) => {
@@ -65,10 +73,6 @@ function populateStationsDropdown() {
 // Call the function to populate stations on page load
 populateStationsDropdown();
 
-// ... (your existing code)
-
-// ... (your existing code)
-
 // Get the AC and DC buttons
 const acButton = document.getElementById('acButton');
 const dcButton = document.getElementById('dcButton');
@@ -76,13 +80,13 @@ const dcButton = document.getElementById('dcButton');
 // Attach event listeners to the AC and DC buttons
 acButton.addEventListener('click', () => {
   displayTerminals(selectedStation, 'AC');
+  initiatePayment(8000); // Pass the amount for AC
 });
 
 dcButton.addEventListener('click', () => {
   displayTerminals(selectedStation, 'DC');
+  initiatePayment(10000); // Pass the amount for DC
 });
-
-// ... (your existing code)
 
 // Function to display terminals for the selected station and type
 function displayTerminals(selectedStation, type) {
@@ -94,7 +98,7 @@ function displayTerminals(selectedStation, type) {
     .then(snapshot => {
       // Get the div where you want to display terminals
       const terminalsDiv = document.getElementById('terminalsDiv');
-      
+
       // Clear existing content
       terminalsDiv.innerHTML = "";
 
@@ -112,8 +116,6 @@ function displayTerminals(selectedStation, type) {
     });
 }
 
-// ... (your existing code)
-
 // Get the submit button element
 const submitButton = document.getElementById('submitButton');
 
@@ -122,7 +124,7 @@ submitButton.addEventListener('click', () => {
   console.log('Button clicked!');
 
   const selectedVehicle = document.getElementById('vehicleDropdown').value;
-  const selectedStation = document.getElementById('stationDropdown').value;
+  selectedStation = document.getElementById('stationDropdown').value;
 
   if (selectedVehicle && selectedStation) {
     // Create a charging history entry
@@ -137,12 +139,9 @@ submitButton.addEventListener('click', () => {
       .then(() => {
         alert('Charging history stored successfully.');
         console.log('Displaying terminals for selected station');
-        
+
         // Call the function to display terminals
-        terminaldisplay(selectedStation);
-        
-        // Optionally, you can navigate to the selectterminal.html page here
-        // window.location.href = 'selectterminal.html';
+        displayTerminals(selectedStation, 'AC'); // Assuming 'AC' is the default type
       })
       .catch((error) => {
         // Handle the error
@@ -155,21 +154,16 @@ submitButton.addEventListener('click', () => {
   }
 });
 
-// ... (your existing code)
-const razorpay = new Razorpay({
-  key_id: 'rzp_test_HaKkOFpjivI4is',
-  key_secret: 'yeKyamqLgsgUMQeBdPhsqT4A',
-});
-
+// Event listener for the payment button
 document.getElementById('paymentButton').addEventListener('click', function () {
-  // Create a payment object
+  // Configure Razorpay options
   const options = {
-      amount: 1000, // Amount in paisa (e.g., 1000 paisa = ₹10)
-      currency: 'INR', // Currency code
-      receipt: 'order_receipt_123', // Receipt ID
-      payment_capture: '8.8', // Auto capture payment
+    amount: 8000, // Default to AC amount
+    currency: 'INR',
+    receipt: 'order_receipt_123',
+    payment_capture: '8',
   };
 
-  // Open Razorpay checkout form
+  // Open Razorpay payment modal
   razorpay.open(options);
 });

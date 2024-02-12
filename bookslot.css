@@ -55,34 +55,19 @@ body {
   
   button {
     padding: 10px;
-    background-color: #5eb3b4;
+    background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
   }
   
-  #acButton,
-  #dcButton {
+  #acButton, #dcButton {
     padding: 10px;
     margin: 5px;
     font-size: 16px;
     cursor: pointer;
     background-color: #b6edb8;
     width: 50%;
-    display: block; /* Display buttons as blocks to make them vertical */
-    float: left; /* Float buttons to the left to align them in the same line */
-    box-sizing: border-box; /* Include padding and border in the box's total width and height */
-  }
-  
-  #acButton:hover,
-  #dcButton:hover {
-    background-color:  #679393;
-  }
-  
-  .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
   }
   
   /* Style for the terminals container */
@@ -103,7 +88,7 @@ body {
     overflow: hidden;
   }
   
-  img {
+  img {a
     width: 50%;
     height: 100%;
     object-fit: cover;
@@ -140,7 +125,7 @@ body {
   margin-top: 20px;
   padding: 15px;
   background-color: #f0f0f0;
-  border: 1px solid #9d7171;
+  border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -151,3 +136,21 @@ body {
   font-size: 16px;
   color: #333;
 }
+
+/* Add your existing styles here */
+
+.terminal-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .slot-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    /* Add more styles as needed */
+  }
+  
