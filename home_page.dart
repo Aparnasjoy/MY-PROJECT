@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'account_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       // Navigate to the account page
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => account_page()), // Replace AccountPage() with your actual account page
+        MaterialPageRoute(builder: (context) => AccountPage()), // Replace AccountPage() with your actual account page
       );
     }
   }
