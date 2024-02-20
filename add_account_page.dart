@@ -59,6 +59,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           TextFormField(
             controller: _nameController,
             decoration: InputDecoration(
+			
               labelText: 'Name',
               labelStyle: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
               focusedBorder: OutlineInputBorder(

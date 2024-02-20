@@ -32,7 +32,7 @@ class MyFavoriteStationPage extends StatelessWidget {
           ),
           TextSpan(
             text: 'HUB',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
           ),
         ],
       ),

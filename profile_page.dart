@@ -26,17 +26,6 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.black,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddAccountPage()),
-              );
-            },
-          ),
-        ],
       ),
       body: Align(
         alignment: Alignment.bottomCenter,
