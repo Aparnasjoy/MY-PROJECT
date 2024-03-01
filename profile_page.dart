@@ -1,6 +1,7 @@
 // profile_page.dart
 import 'package:flutter/material.dart';
 import 'add_account_page.dart';
+import 'login_page.dart';  // Import your LoginPage file
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -26,6 +27,19 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.black,
+        actions: [
+          // Add a login button to the AppBar
+          IconButton(
+            onPressed: () {
+              // Navigate to the login page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            },
+            icon: Icon(Icons.login),
+          ),
+        ],
       ),
       body: Align(
         alignment: Alignment.bottomCenter,
@@ -54,7 +68,6 @@ class ProfilePage extends StatelessWidget {
               child: Text('Add Account'),
             ),
             SizedBox(height: 16.0),
-            
           ],
         ),
       ),

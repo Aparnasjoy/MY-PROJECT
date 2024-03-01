@@ -1,5 +1,20 @@
-// add_account_page.dart
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AddAccountPage(),
+    );
+  }
+}
 
 class AddAccountPage extends StatelessWidget {
   @override
@@ -51,15 +66,133 @@ class _RegistrationFormState extends State<RegistrationForm> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String? _validateName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your name';
+    }
+    // Validate name only contains letters and is under 20 characters
+    RegExp nameRegex = RegExp(r'^[a-zA-Z]{1,20}$');
+    if (!nameRegex.hasMatch(value)) {
+      return 'Invalid name format';
+    }
+    return null;
+  }
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your email';
+    }
+    // Strong email validation
+    RegExp emailRegex = RegExp(r'^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$');
+    if (!emailRegex.hasMatch(value)) {
+      return 'Invalid email format';
+    }
+    return null;
+  }
+
+  String? _validatePhoneNumber(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Please enter your phone number';
+  }
+
+  // Validate if the phone number has the country code '+91' followed by 10 digits
+  RegExp phoneRegex = RegExp(r'^\+91[1-9]\d{9}$');
+  if (!phoneRegex.hasMatch(value)) {
+    return 'Invalid phone number';
+  }
+
+  return null;
+}
+
+
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a password';
+    } else if (value.length < 6) {
+      return 'Password must be at least 6 characters long';
+    }
+    return null;
+  }
+
+  String? _validateConfirmPassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please confirm your password';
+    } else if (value != _passwordController.text) {
+      return 'Passwords do not match';
+    }
+    return null;
+  }
+
+  Future<void> _registerUser() async {
+    try {
+      print('Registering user...');
+
+      // Create user in Firebase Authentication
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      // Get the user ID from the created user
+      String userId = userCredential.user!.uid;
+
+      // Store additional user data in Firestore
+      await FirebaseFirestore.instance.collection('profile').doc(userId).set({
+        'name': _nameController.text,
+        'email': _emailController.text,
+        'phoneNumber': _phoneNumberController.text,
+      });
+
+      // Show a stylish alert
+      _showRegistrationAlert(context);
+
+      // Reload the page
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => super.widget,
+        ),
+      );
+
+      print('Registration successful');
+    } catch (e) {
+      print('Error registering user: $e');
+    }
+  }
+
+  // Function to show a stylish alert
+  void _showRegistrationAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Registration Successful'),
+          content: Text('Thank you for registering!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the alert
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           TextFormField(
             controller: _nameController,
             decoration: InputDecoration(
-			
               labelText: 'Name',
               labelStyle: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
               focusedBorder: OutlineInputBorder(
@@ -69,12 +202,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 1.0),
               ),
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your name';
-              }
-              return null;
-            },
+            validator: _validateName,
           ),
           SizedBox(height: 16.0),
           TextFormField(
@@ -90,10 +218,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ),
             ),
             keyboardType: TextInputType.emailAddress,
-            validator: (value) {
-              // Add email validation logic if needed
-              return null;
-            },
+            validator: _validateEmail,
           ),
           SizedBox(height: 16.0),
           TextFormField(
@@ -109,10 +234,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ),
             ),
             keyboardType: TextInputType.phone,
-            validator: (value) {
-              // Add phone number validation logic if needed
-              return null;
-            },
+            validator: _validatePhoneNumber,
           ),
           SizedBox(height: 16.0),
           TextFormField(
@@ -128,12 +250,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ),
             ),
             obscureText: true,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter a password';
-              }
-              return null;
-            },
+            validator: _validatePassword,
           ),
           SizedBox(height: 16.0),
           TextFormField(
@@ -149,21 +266,13 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ),
             ),
             obscureText: true,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please confirm your password';
-              } else if (value != _passwordController.text) {
-                return 'Passwords do not match';
-              }
-              return null;
-            },
+            validator: _validateConfirmPassword,
           ),
           SizedBox(height: 16.0),
           ElevatedButton(
             onPressed: () {
-              if (Form.of(context)!.validate()) {
-                // Perform registration logic here
-                // You can access the entered values using _nameController.text, _emailController.text, etc.
+              if (_formKey.currentState!.validate()) {
+                _registerUser();
               }
             },
             style: ButtonStyle(
