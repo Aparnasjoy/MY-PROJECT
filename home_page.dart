@@ -1,52 +1,7 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-class Station {
-  String location;
-  String longitude;
-  String managerId;
-  String stationId;
-  String stationName;
-  String latitude;
-
-  Station({
-    required this.location,
-    required this.longitude,
-    required this.managerId,
-    required this.stationId,
-    required this.stationName,
-    required this.latitude,
-  });
-}
-
-class FirebaseService {
-  static Future<List<Station>> getStations() async {
-    // Replace with your actual implementation to fetch data from Firebase
-    // Example: Make an HTTP request or use a Firebase package
-    return Future.delayed(Duration(seconds: 2), () {
-      return [
-        Station(
-          location: "Kottayam",
-          longitude: "76.5222",
-          managerId: "manager1",
-          stationId: "SID1",
-          stationName: "Station 1",
-          latitude: "9.5918",
-        ),
-        Station(
-          location: "Some Location",
-          longitude: "76.1234",
-          managerId: "manager2",
-          stationId: "SID2",
-          stationName: "Station 2",
-          latitude: "10.9876",
-        ),
-        // ... Add more stations
-      ];
-    });
-  }
-}
+import 'account_page.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -63,28 +18,11 @@ class _HomePageState extends State<HomePage> {
   ];
 
   GoogleMapController? _mapController;
-  final LatLng kottayamLatLng = LatLng(9.5918, 76.5222);
+  final LatLng kottayamLatLng = LatLng(9.5918, 76.5222); // Kottayam, Kerala
   TextEditingController _searchController = TextEditingController();
+  Set<Marker> _markers = {};
 
-  List<Station> _stations = [];
-
-  double _calculateDistance(LatLng from, LatLng to) {
-    const R = 6371.0; // Earth radius in kilometers
-    double lat1 = from.latitude * pi / 180.0;
-    double lon1 = from.longitude * pi / 180.0;
-    double lat2 = to.latitude * pi / 180.0;
-    double lon2 = to.longitude * pi / 180.0;
-
-    double dLat = lat2 - lat1;
-    double dLon = lon2 - lon1;
-
-    double a = sin(dLat / 2) * sin(dLat / 2) +
-        cos(lat1) * cos(lat2) * sin(dLon / 2) * sin(dLon / 2);
-
-    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
-
-    return R * c; // Distance in kilometers
-  }
+  DatabaseReference _databaseReference = FirebaseDatabase.instance.reference().child('station');
 
   void _onItemTapped(int index) {
     setState(() {
@@ -92,7 +30,6 @@ class _HomePageState extends State<HomePage> {
     });
 
     if (index == 1) {
-      // Replace AccountPage() with your actual account page
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => AccountPage()),
@@ -105,43 +42,47 @@ class _HomePageState extends State<HomePage> {
       _mapController = controller;
       _mapController?.animateCamera(CameraUpdate.newLatLngZoom(kottayamLatLng, 14.0));
     });
-    _loadStations();
   }
 
-  void _loadStations() async {
-    try {
-      List<Station> stations = await FirebaseService.getStations();
-      setState(() {
-        _stations = stations;
-        _addMarkers();
-      });
-    } catch (error) {
-      print('Error loading stations: $error');
-    }
-  }
+void _loadStations() {
+  _databaseReference.onValue.listen((DatabaseEvent event) {
+    DataSnapshot snapshot = event.snapshot;
 
-  void _addMarkers() {
-    LatLng currentLocation = LatLng(9.5918, 76.5222);
-    for (Station station in _stations) {
-      LatLng stationLocation = LatLng(
-        double.parse(station.latitude),
-        double.parse(station.longitude),
-      );
+    if (snapshot.value != null && snapshot.value is Map<dynamic, dynamic>) {
+      Map<dynamic, dynamic> data = snapshot.value as Map<dynamic, dynamic>;
 
-      double distance = _calculateDistance(currentLocation, stationLocation);
+      List<Marker> markers = [];
 
-          _mapController?.addMarker(
+      data.forEach((key, value) {
+        double latitude = double.parse(value['latitude']);
+        double longitude = double.parse(value['longitude']);
+
+        markers.add(
           Marker(
-            markerId: MarkerId('your_unique_marker_id'),
-              position: stationLocation,
-              infoWindow: InfoWindow(
-              title: '${station.stationName}',
-                snippet: 'Distance: ${distance.toStringAsFixed(2)} km\n${station.location}',
-    ),
-  ),
-);
+            markerId: MarkerId(key),
+            position: LatLng(latitude, longitude),
+            infoWindow: InfoWindow(
+              title: value['stationName'],
+              snippet: 'Location: ${value['location']}', // Display location here
+            ),
+            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+          ),
+        );
+      });
 
+      setState(() {
+        _markers = markers.toSet();
+      });
     }
+  });
+}
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    _loadStations();
   }
 
   @override
@@ -174,6 +115,7 @@ class _HomePageState extends State<HomePage> {
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(target: kottayamLatLng, zoom: 14.0),
             myLocationButtonEnabled: false,
+            markers: _markers,
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -221,23 +163,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-class AccountPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Account Page'),
-      ),
-      body: Center(
-        child: Text('This is the Account Page'),
-      ),
-    );
-  }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: HomePage(),
-  ));
-}
+ 
