@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'account_page.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'stationdetail_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,10 +20,10 @@ class _HomePageState extends State<HomePage> {
 
   GoogleMapController? _mapController;
   final LatLng kottayamLatLng = LatLng(9.5918, 76.5222); // Kottayam, Kerala
-  TextEditingController _searchController = TextEditingController();
   Set<Marker> _markers = {};
-
   DatabaseReference _databaseReference = FirebaseDatabase.instance.reference().child('station');
+  String _selectedStation = '';
+   // Declare _selectedStationId here
 
   void _onItemTapped(int index) {
     setState(() {
@@ -44,40 +45,40 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-void _loadStations() {
-  _databaseReference.onValue.listen((DatabaseEvent event) {
-    DataSnapshot snapshot = event.snapshot;
+  void _loadStations() {
+    _databaseReference.onValue.listen((DatabaseEvent event) {
+      DataSnapshot snapshot = event.snapshot;
 
-    if (snapshot.value != null && snapshot.value is Map<dynamic, dynamic>) {
-      Map<dynamic, dynamic> data = snapshot.value as Map<dynamic, dynamic>;
+      if (snapshot.value != null && snapshot.value is Map<dynamic, dynamic>) {
+        Map<dynamic, dynamic> data = snapshot.value as Map<dynamic, dynamic>;
 
-      List<Marker> markers = [];
+        List<Marker> markers = [];
 
-      data.forEach((key, value) {
-        double latitude = double.parse(value['latitude']);
-        double longitude = double.parse(value['longitude']);
+        data.forEach((key, value) {
+          double latitude = double.parse(value['latitude']);
+          double longitude = double.parse(value['longitude']);
 
-        markers.add(
-          Marker(
-            markerId: MarkerId(key),
-            position: LatLng(latitude, longitude),
-            infoWindow: InfoWindow(
-              title: value['stationName'],
-              snippet: 'Location: ${value['location']}', // Display location here
+          markers.add(
+            Marker(
+              markerId: MarkerId(key),
+              position: LatLng(latitude, longitude),
+              infoWindow: InfoWindow(
+                title: value['stationName'],
+                snippet: 'Location: ${value['location']}', // Display location here
+              ),
+              icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
             ),
-            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-          ),
-        );
-      });
+          );
 
-      setState(() {
-        _markers = markers.toSet();
-      });
-    }
-  });
-}
+          
+        });
 
-
+        setState(() {
+          _markers = markers.toSet();
+        });
+      }
+    });
+  }
 
   @override
   void initState() {
@@ -117,19 +118,66 @@ void _loadStations() {
             myLocationButtonEnabled: false,
             markers: _markers,
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Search...',
-                prefixIcon: Icon(Icons.search),
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color.fromARGB(255, 245, 245, 244), width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.white,
+                    ),
+                    child: DropdownButton<String>(
+                      value: _selectedStation.isEmpty ? null : _selectedStation,
+                      hint: Text(
+                        'Search....',
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.black,
+                      ),
+                      dropdownColor: Colors.white,
+                      elevation: 5,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 36.0,
+                      iconEnabledColor: const Color.fromARGB(255, 240, 235, 235),
+                     onChanged: (newValue) {
+    setState(() {
+      _selectedStation = newValue!;
+    });
+    // Navigate to the station details page here
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => StationDetailsPage(stationName: newValue!)),
+    );
+  },
+                      items: _markers.map((Marker marker) {
+                        return DropdownMenuItem<String>(
+                          value: marker.infoWindow.title ?? '',
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              marker.infoWindow.title ?? '',
+                              style: TextStyle(
+                                fontSize: 18.0,
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -163,4 +211,3 @@ void _loadStations() {
     );
   }
 }
- 
