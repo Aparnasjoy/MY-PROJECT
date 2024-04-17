@@ -5,6 +5,8 @@ import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'brandpage.dart'; // Import the BrandPage file
 
 class SelectVehicleTypePage extends StatefulWidget {
+  const SelectVehicleTypePage({super.key});
+
   @override
   _SelectVehicleTypePageState createState() => _SelectVehicleTypePageState();
 }
@@ -50,9 +52,9 @@ class _SelectVehicleTypePageState extends State<SelectVehicleTypePage> {
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 243, 159, 33)),
-              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.all(16.0)),
+              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(16.0)),
             ),
-            child: Text('Continue', style: TextStyle(fontSize: 18.0, color: Colors.white)),
+            child: const Text('Continue', style: TextStyle(fontSize: 18.0, color: Colors.white)),
           ),
         ],
       ),
@@ -61,7 +63,7 @@ class _SelectVehicleTypePageState extends State<SelectVehicleTypePage> {
 
   Widget buildAppBarTitle() {
     return RichText(
-      text: TextSpan(
+      text: const TextSpan(
         style: TextStyle(
           fontSize: 30.0,
           fontWeight: FontWeight.bold,
@@ -69,11 +71,11 @@ class _SelectVehicleTypePageState extends State<SelectVehicleTypePage> {
         children: [
           TextSpan(
             text: 'Select',
-            style: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+            style: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
           ),
           TextSpan(
             text: ' Vehicle Type',
-            style: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+            style: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
           ),
         ],
       ),
@@ -82,7 +84,7 @@ class _SelectVehicleTypePageState extends State<SelectVehicleTypePage> {
 
   Widget buildHeaderText() {
     return RichText(
-      text: TextSpan(
+      text: const TextSpan(
         style: TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.bold,
@@ -90,11 +92,11 @@ class _SelectVehicleTypePageState extends State<SelectVehicleTypePage> {
         children: [
           TextSpan(
             text: ' ',
-            style: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+            style: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
           ),
           TextSpan(
             text: '  ',
-            style: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+            style: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
           ),
         ],
       ),
@@ -107,7 +109,7 @@ class _SelectVehicleTypePageState extends State<SelectVehicleTypePage> {
         crossAxisCount: 2,
         crossAxisSpacing: 16.0,
         mainAxisSpacing: 16.0,
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         children: [
           buildSelectableVehicleIcon(context, 'assets/2_wheeler.png', 0),
           buildSelectableVehicleIcon(context, 'assets/3_wheeler.png', 1),
@@ -135,7 +137,7 @@ class _SelectVehicleTypePageState extends State<SelectVehicleTypePage> {
           ),
           borderRadius: BorderRadius.circular(8.0),
         ),
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: FutureBuilder(
           future: loadAsset(assetPath),
           builder: (context, AsyncSnapshot<Uint8List?> snapshot) {
@@ -146,7 +148,7 @@ class _SelectVehicleTypePageState extends State<SelectVehicleTypePage> {
                 height: 100.0,
               );
             } else {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
           },
         ),

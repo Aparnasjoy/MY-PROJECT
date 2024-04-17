@@ -6,16 +6,18 @@ import 'vehicle_page.dart';
 import 'fav_station.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class AccountPage extends StatelessWidget {
+  const AccountPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: RichText(
-          text: TextSpan(
+          text: const TextSpan(
             style: TextStyle(
               fontSize: 30.0,
               fontWeight: FontWeight.bold,
@@ -23,7 +25,7 @@ class AccountPage extends StatelessWidget {
             children: [
               TextSpan(
                 text: 'Charge',
-                style: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+                style: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
               ),
               TextSpan(
                 text: 'HUB',
@@ -44,7 +46,7 @@ class AccountPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                  MaterialPageRoute(builder: (context) => const ProfilePage()),
                 );
               },
             ),
@@ -54,7 +56,7 @@ class AccountPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyPaymentsPage()),
+                MaterialPageRoute(builder: (context) => const MyPaymentsPage()),
                 // Add your logic for the 'My Payments' button
               );
               },
@@ -65,7 +67,7 @@ class AccountPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyElectricVehiclePage()),
+                MaterialPageRoute(builder: (context) => const MyElectricVehiclePage()),
                 // Add your logic for the 'My Electric Vehicle' button
                );
               },
@@ -76,7 +78,7 @@ class AccountPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                  context,
-                 MaterialPageRoute(builder: (context) => MyFavoriteStationPage()),
+                 MaterialPageRoute(builder: (context) => const MyFavoriteStationPage()),
                );
               },
             ),
@@ -100,7 +102,7 @@ class StyledButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
 
-  const StyledButton({
+  const StyledButton({super.key, 
     required this.label,
     required this.icon,
     required this.onPressed,
@@ -116,14 +118,14 @@ class StyledButton extends StatelessWidget {
           onPressed: onPressed,
           style: ButtonStyle(
             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-              EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+              const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
             ),
             backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
             foregroundColor: MaterialStateProperty.all<Color>(Colors.orange),
             shape: MaterialStateProperty.all<OutlinedBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                side: BorderSide(color: Colors.orange),
+                side: const BorderSide(color: Colors.orange),
               ),
             ),
           ),
@@ -131,16 +133,16 @@ class StyledButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (label == 'My Electric Vehicle') ...[
-                Icon(Icons.electric_scooter, size: 30.0, color: Colors.orange),
-                SizedBox(height: 4.0), // Adjusted height
+                const Icon(Icons.electric_scooter, size: 30.0, color: Colors.orange),
+                const SizedBox(height: 4.0), // Adjusted height
               ] else ...[
                 Icon(icon, size: 30.0, color: Colors.orange),
-                SizedBox(height: 4.0), // Adjusted height
+                const SizedBox(height: 4.0), // Adjusted height
               ],
               Text(
                 label,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.orange,
@@ -155,6 +157,8 @@ class StyledButton extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -162,7 +166,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: AccountPage(),
+      home: const AccountPage(),
     );
   }
 }

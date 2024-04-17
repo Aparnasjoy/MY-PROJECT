@@ -5,7 +5,7 @@ import 'vehicle_number_page.dart';
 class BrandPage extends StatefulWidget {
   final String vehicleType;
 
-  BrandPage({required this.vehicleType});
+  const BrandPage({super.key, required this.vehicleType});
 
   @override
   _BrandPageState createState() => _BrandPageState();
@@ -52,13 +52,13 @@ class _BrandPageState extends State<BrandPage> {
         backgroundColor: Colors.black,
       ),
       body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 16.0,
         ),
         itemCount: brandMap[widget.vehicleType]?.length ?? 0,
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         itemBuilder: (context, index) {
           Brand brand = brandMap[widget.vehicleType]![index];
           return buildBrandItem(context, brand, index);
@@ -80,7 +80,7 @@ class _BrandPageState extends State<BrandPage> {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 243, 159, 33)),
                 ),
-                child: Text('Continue', style: TextStyle(fontSize: 18.0, color: Colors.white)),
+                child: const Text('Continue', style: TextStyle(fontSize: 18.0, color: Colors.white)),
               ),
             )
           : null,
@@ -103,7 +103,7 @@ class _BrandPageState extends State<BrandPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: isSelected ? Colors.orange : Colors.transparent,

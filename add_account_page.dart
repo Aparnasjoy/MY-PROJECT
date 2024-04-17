@@ -3,13 +3,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AddAccountPage(),
     );
@@ -17,12 +19,14 @@ class MyApp extends StatelessWidget {
 }
 
 class AddAccountPage extends StatelessWidget {
+  const AddAccountPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: RichText(
-          text: TextSpan(
+          text: const TextSpan(
             style: TextStyle(
               fontSize: 30.0,
               fontWeight: FontWeight.bold,
@@ -30,7 +34,7 @@ class AddAccountPage extends StatelessWidget {
             children: [
               TextSpan(
                 text: 'Charge',
-                style: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+                style: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
               ),
               TextSpan(
                 text: 'HUB',
@@ -41,8 +45,8 @@ class AddAccountPage extends StatelessWidget {
         ),
         backgroundColor: Colors.black,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -55,6 +59,8 @@ class AddAccountPage extends StatelessWidget {
 }
 
 class RegistrationForm extends StatefulWidget {
+  const RegistrationForm({super.key});
+
   @override
   _RegistrationFormState createState() => _RegistrationFormState();
 }
@@ -169,14 +175,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Registration Successful'),
-          content: Text('Thank you for registering!'),
+          title: const Text('Registration Successful'),
+          content: const Text('Thank you for registering!'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the alert
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );
@@ -192,83 +198,83 @@ class _RegistrationFormState extends State<RegistrationForm> {
         children: [
           TextFormField(
             controller: _nameController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Name',
-              labelStyle: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+              labelStyle: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 2.0),
+                borderSide: BorderSide(color: Color.fromARGB(255, 243, 159, 33), width: 2.0),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 1.0),
+                borderSide: BorderSide(color: Color.fromARGB(255, 243, 159, 33), width: 1.0),
               ),
             ),
             validator: _validateName,
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           TextFormField(
             controller: _emailController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Email',
-              labelStyle: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+              labelStyle: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 2.0),
+                borderSide: BorderSide(color: Color.fromARGB(255, 243, 159, 33), width: 2.0),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 1.0),
+                borderSide: BorderSide(color: Color.fromARGB(255, 243, 159, 33), width: 1.0),
               ),
             ),
             keyboardType: TextInputType.emailAddress,
             validator: _validateEmail,
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           TextFormField(
             controller: _phoneNumberController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Phone Number',
-              labelStyle: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+              labelStyle: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 2.0),
+                borderSide: BorderSide(color: Color.fromARGB(255, 243, 159, 33), width: 2.0),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 1.0),
+                borderSide: BorderSide(color: Color.fromARGB(255, 243, 159, 33), width: 1.0),
               ),
             ),
             keyboardType: TextInputType.phone,
             validator: _validatePhoneNumber,
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           TextFormField(
             controller: _passwordController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Password',
-              labelStyle: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+              labelStyle: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 2.0),
+                borderSide: BorderSide(color: Color.fromARGB(255, 243, 159, 33), width: 2.0),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 1.0),
+                borderSide: BorderSide(color: Color.fromARGB(255, 243, 159, 33), width: 1.0),
               ),
             ),
             obscureText: true,
             validator: _validatePassword,
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           TextFormField(
             controller: _confirmPasswordController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Confirm Password',
-              labelStyle: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+              labelStyle: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 2.0),
+                borderSide: BorderSide(color: Color.fromARGB(255, 243, 159, 33), width: 2.0),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromARGB(255, 243, 159, 33), width: 1.0),
+                borderSide: BorderSide(color: Color.fromARGB(255, 243, 159, 33), width: 1.0),
               ),
             ),
             obscureText: true,
             validator: _validateConfirmPassword,
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
@@ -278,8 +284,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 243, 159, 33)),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: Text('Register', style: TextStyle(color: Colors.white)),
             ),
           ),

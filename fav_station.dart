@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MyFavoriteStationPage extends StatelessWidget {
+  const MyFavoriteStationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: Center(
+      body: const Center(
         child: Text('My Favorite Station Page'),
       ),
     );
@@ -20,7 +22,7 @@ class MyFavoriteStationPage extends StatelessWidget {
 
   Widget buildAppBarTitle() {
     return RichText(
-      text: TextSpan(
+      text: const TextSpan(
         style: TextStyle(
           fontSize: 30.0,
           fontWeight: FontWeight.bold,
@@ -28,11 +30,11 @@ class MyFavoriteStationPage extends StatelessWidget {
         children: [
           TextSpan(
             text: 'Charge',
-            style: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+            style: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
           ),
           TextSpan(
             text: 'HUB',
-            style: TextStyle(color: const Color.fromARGB(255, 243, 159, 33)),
+            style: TextStyle(color: Color.fromARGB(255, 243, 159, 33)),
           ),
         ],
       ),
